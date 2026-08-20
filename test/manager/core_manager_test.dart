@@ -12,6 +12,27 @@ import 'package:mocktail/mocktail.dart';
 class _MockCoreHandlerInterface extends Mock implements CoreHandlerInterface {}
 
 void main() {
+  test('does not notify for a failed second delay-test response', () {
+    const log = Log(
+      logLevel: LogLevel.error,
+      payload:
+          'proxy failed to get the second response from http://example.com',
+      dateTime: '',
+    );
+
+    expect(shouldShowCoreLogNotifier(log), isFalse);
+  });
+
+  test('still notifies for other core errors', () {
+    const log = Log(
+      logLevel: LogLevel.error,
+      payload: 'core failed',
+      dateTime: '',
+    );
+
+    expect(shouldShowCoreLogNotifier(log), isTrue);
+  });
+
   testWidgets('duplicate crash events disconnect the core only once', (
     tester,
   ) async {

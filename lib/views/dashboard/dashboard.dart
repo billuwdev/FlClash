@@ -17,6 +17,15 @@ typedef _IsEditWidgetBuilder = Widget Function(bool isEdit);
 const _maxCrossAxisCount = 16;
 const _maxGridWidth = 280.0 * _maxCrossAxisCount / 4;
 
+bool _isDashboardWidgetVisible(
+  DashboardWidget widget, {
+  required bool torEnabled,
+}) {
+  if (torEnabled) return true;
+  return widget != DashboardWidget.torStatus &&
+      widget != DashboardWidget.torTrafficUsage;
+}
+
 class DashboardView extends ConsumerStatefulWidget {
   const DashboardView({super.key});
 
@@ -172,11 +181,16 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
   @override
   Widget build(BuildContext context) {
     final dashboardState = ref.watch(dashboardStateProvider);
+    final torEnabled = ref.watch(
+      vpnSettingProvider.select((state) => state.torProps.enable),
+    );
     final spacing = 14.mAp;
     final children = [
       ...dashboardState.dashboardWidgets
           .where(
-            (item) => item.platforms.contains(SupportPlatform.currentPlatform),
+            (item) =>
+                item.platforms.contains(SupportPlatform.currentPlatform) &&
+                _isDashboardWidgetVisible(item, torEnabled: torEnabled),
           )
           .map((item) => item.widget),
     ];
@@ -185,7 +199,8 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
           .where(
             (item) =>
                 !children.contains(item.widget) &&
-                item.platforms.contains(SupportPlatform.currentPlatform),
+                item.platforms.contains(SupportPlatform.currentPlatform) &&
+                _isDashboardWidgetVisible(item, torEnabled: torEnabled),
           )
           .map((item) => item.widget)
           .toList();

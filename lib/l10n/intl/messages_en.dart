@@ -76,9 +76,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m23(count) => "${count} items have been selected";
 
-  static String m24(label) => "${label} must be a url";
+  static String m24(count) => "${count} bridge line(s)";
 
-  static String m25(count) =>
+  static String m25(label) => "${label} must be a url";
+
+  static String m26(count) =>
       "${Intl.plural(count, one: '1 year ago', other: '${count} years ago')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -1014,6 +1016,26 @@ class MessageLookup extends MessageLookupByLibrary {
     "toggle": MessageLookupByLibrary.simpleMessage("Toggle"),
     "tonalSpotScheme": MessageLookupByLibrary.simpleMessage("TonalSpot"),
     "tools": MessageLookupByLibrary.simpleMessage("Tools"),
+    "torBridgeDirect": MessageLookupByLibrary.simpleMessage("Direct"),
+    "torBridgeLines": MessageLookupByLibrary.simpleMessage("Tor bridge lines"),
+    "torBridgeLinesCount": m24,
+    "torBridgeMode": MessageLookupByLibrary.simpleMessage("Tor bridge mode"),
+    "torBridgeObfs4": MessageLookupByLibrary.simpleMessage("obfs4 bridge"),
+    "torCheckingExit": MessageLookupByLibrary.simpleMessage(
+      "Checking Tor exit...",
+    ),
+    "torCustomBridges": MessageLookupByLibrary.simpleMessage(
+      "Custom Tor bridges",
+    ),
+    "torCustomBridgesDesc": MessageLookupByLibrary.simpleMessage(
+      "Use your own bridge lines instead of the built-in bridges",
+    ),
+    "torEnabled": MessageLookupByLibrary.simpleMessage("Tor"),
+    "torEnabledDesc": MessageLookupByLibrary.simpleMessage(
+      "Route TCP traffic through the built-in Tor network",
+    ),
+    "torStatus": MessageLookupByLibrary.simpleMessage("Tor network check"),
+    "torTrafficUsage": MessageLookupByLibrary.simpleMessage("Tor traffic"),
     "tproxyPort": MessageLookupByLibrary.simpleMessage("Tproxy Port"),
     "trafficUsage": MessageLookupByLibrary.simpleMessage("Traffic usage"),
     "tun": MessageLookupByLibrary.simpleMessage("TUN"),
@@ -1038,7 +1060,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "urlDesc": MessageLookupByLibrary.simpleMessage(
       "Obtain profile through URL",
     ),
-    "urlTip": m24,
+    "urlTip": m25,
     "useHosts": MessageLookupByLibrary.simpleMessage("Use hosts"),
     "useSystemHosts": MessageLookupByLibrary.simpleMessage("Use system hosts"),
     "userAgent": MessageLookupByLibrary.simpleMessage("User-Agent"),
@@ -1058,7 +1080,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "WebDAV configuration",
     ),
     "whitelistMode": MessageLookupByLibrary.simpleMessage("Whitelist mode"),
-    "yearsAgo": m25,
+    "yearsAgo": m26,
     "zh_CN": MessageLookupByLibrary.simpleMessage("Simplified Chinese"),
   };
 }

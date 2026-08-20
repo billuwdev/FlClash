@@ -4523,6 +4523,116 @@ class AppLocalizations {
       args: [count],
     );
   }
+
+  /// `Tor`
+  String get torEnabled {
+    return Intl.message('Tor', name: 'torEnabled', desc: '', args: []);
+  }
+
+  /// `Route TCP traffic through the built-in Tor network`
+  String get torEnabledDesc {
+    return Intl.message(
+      'Route TCP traffic through the built-in Tor network',
+      name: 'torEnabledDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tor bridge mode`
+  String get torBridgeMode {
+    return Intl.message(
+      'Tor bridge mode',
+      name: 'torBridgeMode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Direct`
+  String get torBridgeDirect {
+    return Intl.message('Direct', name: 'torBridgeDirect', desc: '', args: []);
+  }
+
+  /// `obfs4 bridge`
+  String get torBridgeObfs4 {
+    return Intl.message(
+      'obfs4 bridge',
+      name: 'torBridgeObfs4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Custom Tor bridges`
+  String get torCustomBridges {
+    return Intl.message(
+      'Custom Tor bridges',
+      name: 'torCustomBridges',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use your own bridge lines instead of the built-in bridges`
+  String get torCustomBridgesDesc {
+    return Intl.message(
+      'Use your own bridge lines instead of the built-in bridges',
+      name: 'torCustomBridgesDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tor bridge lines`
+  String get torBridgeLines {
+    return Intl.message(
+      'Tor bridge lines',
+      name: 'torBridgeLines',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count} bridge line(s)`
+  String torBridgeLinesCount(int count) {
+    return Intl.message(
+      '$count bridge line(s)',
+      name: 'torBridgeLinesCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Tor network check`
+  String get torStatus {
+    return Intl.message(
+      'Tor network check',
+      name: 'torStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Checking Tor exit...`
+  String get torCheckingExit {
+    return Intl.message(
+      'Checking Tor exit...',
+      name: 'torCheckingExit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tor traffic`
+  String get torTrafficUsage {
+    return Intl.message(
+      'Tor traffic',
+      name: 'torTrafficUsage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

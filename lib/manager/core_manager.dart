@@ -12,6 +12,11 @@ import 'package:fl_clash/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+bool shouldShowCoreLogNotifier(Log log) {
+  return log.logLevel == LogLevel.error &&
+      !log.payload.contains('failed to get the second response from');
+}
+
 class CoreManager extends ConsumerStatefulWidget {
   final Widget child;
   final CoreController controller;
@@ -77,7 +82,7 @@ class _CoreContainerState extends ConsumerState<CoreManager>
   @override
   void onLog(Log log) {
     ref.read(logsProvider.notifier).add(log);
-    if (log.logLevel == LogLevel.error) {
+    if (shouldShowCoreLogNotifier(log)) {
       globalState.showNotifier(log.payload);
     }
     super.onLog(log);

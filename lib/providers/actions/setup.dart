@@ -130,6 +130,9 @@ class SetupAction extends _$SetupAction {
 
   Future<void> _stop(_RunRequest request) async {
     await _setCoreRunning(request);
+    if (system.isAndroid) {
+      await torControl.stop();
+    }
     if (!_isCurrent(request)) {
       return;
     }
@@ -279,6 +282,7 @@ class SetupAction extends _$SetupAction {
       ),
     );
     final overrideDns = ref.read(overrideDnsProvider);
+    final vpnProps = ref.read(vpnSettingProvider);
     final appendSystemDns = networkVM2.a;
     final routeMode = networkVM2.b;
     final configMap = await coreController.getConfig(profileId);
@@ -314,6 +318,8 @@ class SetupAction extends _$SetupAction {
         appendSystemDns: appendSystemDns,
         addedRules: addedRules,
         defaultUA: defaultUA,
+        torProps: vpnProps.torProps,
+        accessControlProps: vpnProps.accessControlProps,
       ),
     );
     return res;
@@ -403,6 +409,7 @@ class SetupAction extends _$SetupAction {
     final yamlString = vm2.a;
     final yamlMd5 = vm2.b;
     if (yamlMd5 == globalState.lastConfigMd5 && force == false) {
+      await _syncTor();
       return _SetupTaskResult.completed;
     }
     if (system.isAndroid) {
@@ -424,10 +431,25 @@ class SetupAction extends _$SetupAction {
         globalState.lastConfigMd5 = yamlMd5;
         ref.read(checkIpNumProvider.notifier).add();
         await onUpdated?.call();
+        await _syncTor();
       },
       silence: true,
       tag: !silence ? LoadingTag.proxies : null,
     );
     return _SetupTaskResult.completed;
+  }
+
+  Future<void> _syncTor() async {
+    if (!system.isAndroid) return;
+    final vpnProps = ref.read(vpnSettingProvider);
+    if (!vpnProps.torProps.enable || !_isRunning) {
+      await torControl.stop();
+      return;
+    }
+    final mixedPort = ref.read(patchClashConfigProvider).mixedPort;
+    await torControl.start(
+      torProps: vpnProps.torProps,
+      upstreamSocksPort: mixedPort,
+    );
   }
 }

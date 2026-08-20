@@ -553,5 +553,18 @@
   "geoSkipped": "{name} 已是最新版本",
   "geoUpdated": "{name} 已更新",
   "secondsCount": "{count} 秒",
-  "entriesCount": "{count} 个条目"
+  "entriesCount": "{count} 个条目",
+  "torEnabled": "Tor",
+  "torEnabledDesc": "通过内置 Tor 网络转发 TCP 流量",
+  "torBridgeMode": "Tor 网桥模式",
+  "torBridgeDirect": "直连",
+  "torBridgeObfs4": "obfs4 网桥",
+  "torCustomBridges": "自定义 Tor 网桥",
+  "torCustomBridgesDesc": "使用自己的网桥线路替代内置网桥",
+  "torBridgeLines": "Tor 网桥线路",
+  "torBridgeLinesCount": "{count} 条网桥线路",
+  "@torBridgeLinesCount": {"placeholders": {"count": {"type": "int"}}},
+  "torStatus": "Tor 网络检测",
+  "torCheckingExit": "正在检测 Tor 出口…",
+  "torTrafficUsage": "Tor 流量"
 }

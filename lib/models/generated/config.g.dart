@@ -76,6 +76,8 @@ const _$DashboardWidgetEnumMap = {
   DashboardWidget.outboundMode: 'outboundMode',
   DashboardWidget.trafficUsage: 'trafficUsage',
   DashboardWidget.networkDetection: 'networkDetection',
+  DashboardWidget.torStatus: 'torStatus',
+  DashboardWidget.torTrafficUsage: 'torTrafficUsage',
   DashboardWidget.tunButton: 'tunButton',
   DashboardWidget.vpnButton: 'vpnButton',
   DashboardWidget.systemProxyButton: 'systemProxyButton',
@@ -154,6 +156,9 @@ _VpnProps _$VpnPropsFromJson(Map<String, dynamic> json) => _VpnProps(
       : AccessControlProps.fromJson(
           json['accessControlProps'] as Map<String, dynamic>,
         ),
+  torProps: json['torProps'] == null
+      ? defaultTorProps
+      : TorProps.fromJson(json['torProps'] as Map<String, dynamic>?),
 );
 
 Map<String, dynamic> _$VpnPropsToJson(_VpnProps instance) => <String, dynamic>{
@@ -163,6 +168,28 @@ Map<String, dynamic> _$VpnPropsToJson(_VpnProps instance) => <String, dynamic>{
   'allowBypass': instance.allowBypass,
   'dnsHijacking': instance.dnsHijacking,
   'accessControlProps': instance.accessControlProps,
+  'torProps': instance.torProps,
+};
+
+_TorProps _$TorPropsFromJson(Map<String, dynamic> json) => _TorProps(
+  enable: json['enable'] as bool? ?? false,
+  bridgeMode:
+      $enumDecodeNullable(_$TorBridgeModeEnumMap, json['bridgeMode']) ??
+      TorBridgeMode.obfs4,
+  customBridgesEnabled: json['customBridgesEnabled'] as bool? ?? false,
+  customBridges: json['customBridges'] as String? ?? '',
+);
+
+Map<String, dynamic> _$TorPropsToJson(_TorProps instance) => <String, dynamic>{
+  'enable': instance.enable,
+  'bridgeMode': _$TorBridgeModeEnumMap[instance.bridgeMode]!,
+  'customBridgesEnabled': instance.customBridgesEnabled,
+  'customBridges': instance.customBridges,
+};
+
+const _$TorBridgeModeEnumMap = {
+  TorBridgeMode.direct: 'direct',
+  TorBridgeMode.obfs4: 'obfs4',
 };
 
 _NetworkProps _$NetworkPropsFromJson(Map<String, dynamic> json) =>

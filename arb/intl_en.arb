@@ -553,5 +553,18 @@
   "geoSkipped": "{name} is already up to date",
   "geoUpdated": "{name} updated",
   "secondsCount": "{count} seconds",
-  "entriesCount": "{count} entries"
+  "entriesCount": "{count} entries",
+  "torEnabled": "Tor",
+  "torEnabledDesc": "Route TCP traffic through the built-in Tor network",
+  "torBridgeMode": "Tor bridge mode",
+  "torBridgeDirect": "Direct",
+  "torBridgeObfs4": "obfs4 bridge",
+  "torCustomBridges": "Custom Tor bridges",
+  "torCustomBridgesDesc": "Use your own bridge lines instead of the built-in bridges",
+  "torBridgeLines": "Tor bridge lines",
+  "torBridgeLinesCount": "{count} bridge line(s)",
+  "@torBridgeLinesCount": {"placeholders": {"count": {"type": "int"}}},
+  "torStatus": "Tor network check",
+  "torCheckingExit": "Checking Tor exit...",
+  "torTrafficUsage": "Tor traffic"
 }

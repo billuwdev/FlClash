@@ -30,6 +30,7 @@ const defaultBypassDomain = [
 
 const defaultAppSettingProps = AppSettingProps();
 const defaultVpnProps = VpnProps();
+const defaultTorProps = TorProps();
 const defaultNetworkProps = NetworkProps();
 const defaultProxiesStyleProps = ProxiesStyleProps();
 const defaultWindowProps = WindowProps();
@@ -157,10 +158,32 @@ abstract class VpnProps with _$VpnProps {
     @Default(true) bool allowBypass,
     @Default(false) bool dnsHijacking,
     @Default(defaultAccessControlProps) AccessControlProps accessControlProps,
+    @Default(defaultTorProps) TorProps torProps,
   }) = _VpnProps;
 
   factory VpnProps.fromJson(Map<String, Object?>? json) =>
       json == null ? defaultVpnProps : _$VpnPropsFromJson(json);
+}
+
+@freezed
+abstract class TorProps with _$TorProps {
+  const TorProps._();
+
+  const factory TorProps({
+    @Default(false) bool enable,
+    @Default(TorBridgeMode.obfs4) TorBridgeMode bridgeMode,
+    @Default(false) bool customBridgesEnabled,
+    @Default('') String customBridges,
+  }) = _TorProps;
+
+  factory TorProps.fromJson(Map<String, Object?>? json) =>
+      json == null ? defaultTorProps : _$TorPropsFromJson(json);
+
+  List<String> get bridgeLines => customBridges
+      .split(RegExp(r'\r?\n'))
+      .map((line) => line.trim())
+      .where((line) => line.isNotEmpty)
+      .toList();
 }
 
 @freezed

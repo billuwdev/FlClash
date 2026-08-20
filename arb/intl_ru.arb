@@ -553,5 +553,18 @@
   "geoSkipped": "Для {name} уже установлена последняя версия",
   "geoUpdated": "{name} обновлено",
   "secondsCount": "{count} секунд",
-  "entriesCount": "{count} записей"
+  "entriesCount": "{count} записей",
+  "torEnabled": "Tor",
+  "torEnabledDesc": "Направлять TCP-трафик через встроенную сеть Tor",
+  "torBridgeMode": "Режим моста Tor",
+  "torBridgeDirect": "Прямое подключение",
+  "torBridgeObfs4": "Мост obfs4",
+  "torCustomBridges": "Пользовательские мосты Tor",
+  "torCustomBridgesDesc": "Использовать собственные строки мостов вместо встроенных",
+  "torBridgeLines": "Строки мостов Tor",
+  "torBridgeLinesCount": "Строк мостов: {count}",
+  "@torBridgeLinesCount": {"placeholders": {"count": {"type": "int"}}},
+  "torStatus": "Проверка сети Tor",
+  "torCheckingExit": "Проверка выхода Tor…",
+  "torTrafficUsage": "Трафик Tor"
 }

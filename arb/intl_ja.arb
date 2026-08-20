@@ -553,5 +553,18 @@
   "geoSkipped": "{name} はすでに最新です",
   "geoUpdated": "{name} 更新済み",
   "secondsCount": "{count} 秒",
-  "entriesCount": "{count} エントリ"
+  "entriesCount": "{count} エントリ",
+  "torEnabled": "Tor",
+  "torEnabledDesc": "内蔵 Tor ネットワーク経由で TCP 通信を転送します",
+  "torBridgeMode": "Tor ブリッジモード",
+  "torBridgeDirect": "直接接続",
+  "torBridgeObfs4": "obfs4 ブリッジ",
+  "torCustomBridges": "カスタム Tor ブリッジ",
+  "torCustomBridgesDesc": "内蔵ブリッジの代わりに独自のブリッジ行を使用します",
+  "torBridgeLines": "Tor ブリッジ行",
+  "torBridgeLinesCount": "{count} 件のブリッジ行",
+  "@torBridgeLinesCount": {"placeholders": {"count": {"type": "int"}}},
+  "torStatus": "Tor ネットワーク確認",
+  "torCheckingExit": "Tor 出口を確認中…",
+  "torTrafficUsage": "Tor トラフィック"
 }

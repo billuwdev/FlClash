@@ -909,7 +909,7 @@ as double?,
 /// @nodoc
 mixin _$VpnProps {
 
- bool get enable; bool get systemProxy; bool get ipv6; bool get allowBypass; bool get dnsHijacking; AccessControlProps get accessControlProps;
+ bool get enable; bool get systemProxy; bool get ipv6; bool get allowBypass; bool get dnsHijacking; AccessControlProps get accessControlProps; TorProps get torProps;
 /// Create a copy of VpnProps
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -922,16 +922,16 @@ $VpnPropsCopyWith<VpnProps> get copyWith => _$VpnPropsCopyWithImpl<VpnProps>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is VpnProps&&(identical(other.enable, enable) || other.enable == enable)&&(identical(other.systemProxy, systemProxy) || other.systemProxy == systemProxy)&&(identical(other.ipv6, ipv6) || other.ipv6 == ipv6)&&(identical(other.allowBypass, allowBypass) || other.allowBypass == allowBypass)&&(identical(other.dnsHijacking, dnsHijacking) || other.dnsHijacking == dnsHijacking)&&(identical(other.accessControlProps, accessControlProps) || other.accessControlProps == accessControlProps));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VpnProps&&(identical(other.enable, enable) || other.enable == enable)&&(identical(other.systemProxy, systemProxy) || other.systemProxy == systemProxy)&&(identical(other.ipv6, ipv6) || other.ipv6 == ipv6)&&(identical(other.allowBypass, allowBypass) || other.allowBypass == allowBypass)&&(identical(other.dnsHijacking, dnsHijacking) || other.dnsHijacking == dnsHijacking)&&(identical(other.accessControlProps, accessControlProps) || other.accessControlProps == accessControlProps)&&(identical(other.torProps, torProps) || other.torProps == torProps));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,enable,systemProxy,ipv6,allowBypass,dnsHijacking,accessControlProps);
+int get hashCode => Object.hash(runtimeType,enable,systemProxy,ipv6,allowBypass,dnsHijacking,accessControlProps,torProps);
 
 @override
 String toString() {
-  return 'VpnProps(enable: $enable, systemProxy: $systemProxy, ipv6: $ipv6, allowBypass: $allowBypass, dnsHijacking: $dnsHijacking, accessControlProps: $accessControlProps)';
+  return 'VpnProps(enable: $enable, systemProxy: $systemProxy, ipv6: $ipv6, allowBypass: $allowBypass, dnsHijacking: $dnsHijacking, accessControlProps: $accessControlProps, torProps: $torProps)';
 }
 
 
@@ -942,11 +942,11 @@ abstract mixin class $VpnPropsCopyWith<$Res>  {
   factory $VpnPropsCopyWith(VpnProps value, $Res Function(VpnProps) _then) = _$VpnPropsCopyWithImpl;
 @useResult
 $Res call({
- bool enable, bool systemProxy, bool ipv6, bool allowBypass, bool dnsHijacking, AccessControlProps accessControlProps
+ bool enable, bool systemProxy, bool ipv6, bool allowBypass, bool dnsHijacking, AccessControlProps accessControlProps, TorProps torProps
 });
 
 
-$AccessControlPropsCopyWith<$Res> get accessControlProps;
+$AccessControlPropsCopyWith<$Res> get accessControlProps;$TorPropsCopyWith<$Res> get torProps;
 
 }
 /// @nodoc
@@ -959,7 +959,7 @@ class _$VpnPropsCopyWithImpl<$Res>
 
 /// Create a copy of VpnProps
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? enable = null,Object? systemProxy = null,Object? ipv6 = null,Object? allowBypass = null,Object? dnsHijacking = null,Object? accessControlProps = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? enable = null,Object? systemProxy = null,Object? ipv6 = null,Object? allowBypass = null,Object? dnsHijacking = null,Object? accessControlProps = null,Object? torProps = null,}) {
   return _then(_self.copyWith(
 enable: null == enable ? _self.enable : enable // ignore: cast_nullable_to_non_nullable
 as bool,systemProxy: null == systemProxy ? _self.systemProxy : systemProxy // ignore: cast_nullable_to_non_nullable
@@ -967,7 +967,8 @@ as bool,ipv6: null == ipv6 ? _self.ipv6 : ipv6 // ignore: cast_nullable_to_non_n
 as bool,allowBypass: null == allowBypass ? _self.allowBypass : allowBypass // ignore: cast_nullable_to_non_nullable
 as bool,dnsHijacking: null == dnsHijacking ? _self.dnsHijacking : dnsHijacking // ignore: cast_nullable_to_non_nullable
 as bool,accessControlProps: null == accessControlProps ? _self.accessControlProps : accessControlProps // ignore: cast_nullable_to_non_nullable
-as AccessControlProps,
+as AccessControlProps,torProps: null == torProps ? _self.torProps : torProps // ignore: cast_nullable_to_non_nullable
+as TorProps,
   ));
 }
 /// Create a copy of VpnProps
@@ -978,6 +979,15 @@ $AccessControlPropsCopyWith<$Res> get accessControlProps {
   
   return $AccessControlPropsCopyWith<$Res>(_self.accessControlProps, (value) {
     return _then(_self.copyWith(accessControlProps: value));
+  });
+}/// Create a copy of VpnProps
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TorPropsCopyWith<$Res> get torProps {
+  
+  return $TorPropsCopyWith<$Res>(_self.torProps, (value) {
+    return _then(_self.copyWith(torProps: value));
   });
 }
 }
@@ -1061,10 +1071,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool enable,  bool systemProxy,  bool ipv6,  bool allowBypass,  bool dnsHijacking,  AccessControlProps accessControlProps)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool enable,  bool systemProxy,  bool ipv6,  bool allowBypass,  bool dnsHijacking,  AccessControlProps accessControlProps,  TorProps torProps)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _VpnProps() when $default != null:
-return $default(_that.enable,_that.systemProxy,_that.ipv6,_that.allowBypass,_that.dnsHijacking,_that.accessControlProps);case _:
+return $default(_that.enable,_that.systemProxy,_that.ipv6,_that.allowBypass,_that.dnsHijacking,_that.accessControlProps,_that.torProps);case _:
   return orElse();
 
 }
@@ -1082,10 +1092,10 @@ return $default(_that.enable,_that.systemProxy,_that.ipv6,_that.allowBypass,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool enable,  bool systemProxy,  bool ipv6,  bool allowBypass,  bool dnsHijacking,  AccessControlProps accessControlProps)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool enable,  bool systemProxy,  bool ipv6,  bool allowBypass,  bool dnsHijacking,  AccessControlProps accessControlProps,  TorProps torProps)  $default,) {final _that = this;
 switch (_that) {
 case _VpnProps():
-return $default(_that.enable,_that.systemProxy,_that.ipv6,_that.allowBypass,_that.dnsHijacking,_that.accessControlProps);case _:
+return $default(_that.enable,_that.systemProxy,_that.ipv6,_that.allowBypass,_that.dnsHijacking,_that.accessControlProps,_that.torProps);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1102,10 +1112,10 @@ return $default(_that.enable,_that.systemProxy,_that.ipv6,_that.allowBypass,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool enable,  bool systemProxy,  bool ipv6,  bool allowBypass,  bool dnsHijacking,  AccessControlProps accessControlProps)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool enable,  bool systemProxy,  bool ipv6,  bool allowBypass,  bool dnsHijacking,  AccessControlProps accessControlProps,  TorProps torProps)?  $default,) {final _that = this;
 switch (_that) {
 case _VpnProps() when $default != null:
-return $default(_that.enable,_that.systemProxy,_that.ipv6,_that.allowBypass,_that.dnsHijacking,_that.accessControlProps);case _:
+return $default(_that.enable,_that.systemProxy,_that.ipv6,_that.allowBypass,_that.dnsHijacking,_that.accessControlProps,_that.torProps);case _:
   return null;
 
 }
@@ -1117,7 +1127,7 @@ return $default(_that.enable,_that.systemProxy,_that.ipv6,_that.allowBypass,_tha
 @JsonSerializable()
 
 class _VpnProps implements VpnProps {
-  const _VpnProps({this.enable = true, this.systemProxy = true, this.ipv6 = false, this.allowBypass = true, this.dnsHijacking = false, this.accessControlProps = defaultAccessControlProps});
+  const _VpnProps({this.enable = true, this.systemProxy = true, this.ipv6 = false, this.allowBypass = true, this.dnsHijacking = false, this.accessControlProps = defaultAccessControlProps, this.torProps = defaultTorProps});
   factory _VpnProps.fromJson(Map<String, dynamic> json) => _$VpnPropsFromJson(json);
 
 @override@JsonKey() final  bool enable;
@@ -1126,6 +1136,7 @@ class _VpnProps implements VpnProps {
 @override@JsonKey() final  bool allowBypass;
 @override@JsonKey() final  bool dnsHijacking;
 @override@JsonKey() final  AccessControlProps accessControlProps;
+@override@JsonKey() final  TorProps torProps;
 
 /// Create a copy of VpnProps
 /// with the given fields replaced by the non-null parameter values.
@@ -1140,16 +1151,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VpnProps&&(identical(other.enable, enable) || other.enable == enable)&&(identical(other.systemProxy, systemProxy) || other.systemProxy == systemProxy)&&(identical(other.ipv6, ipv6) || other.ipv6 == ipv6)&&(identical(other.allowBypass, allowBypass) || other.allowBypass == allowBypass)&&(identical(other.dnsHijacking, dnsHijacking) || other.dnsHijacking == dnsHijacking)&&(identical(other.accessControlProps, accessControlProps) || other.accessControlProps == accessControlProps));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VpnProps&&(identical(other.enable, enable) || other.enable == enable)&&(identical(other.systemProxy, systemProxy) || other.systemProxy == systemProxy)&&(identical(other.ipv6, ipv6) || other.ipv6 == ipv6)&&(identical(other.allowBypass, allowBypass) || other.allowBypass == allowBypass)&&(identical(other.dnsHijacking, dnsHijacking) || other.dnsHijacking == dnsHijacking)&&(identical(other.accessControlProps, accessControlProps) || other.accessControlProps == accessControlProps)&&(identical(other.torProps, torProps) || other.torProps == torProps));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,enable,systemProxy,ipv6,allowBypass,dnsHijacking,accessControlProps);
+int get hashCode => Object.hash(runtimeType,enable,systemProxy,ipv6,allowBypass,dnsHijacking,accessControlProps,torProps);
 
 @override
 String toString() {
-  return 'VpnProps(enable: $enable, systemProxy: $systemProxy, ipv6: $ipv6, allowBypass: $allowBypass, dnsHijacking: $dnsHijacking, accessControlProps: $accessControlProps)';
+  return 'VpnProps(enable: $enable, systemProxy: $systemProxy, ipv6: $ipv6, allowBypass: $allowBypass, dnsHijacking: $dnsHijacking, accessControlProps: $accessControlProps, torProps: $torProps)';
 }
 
 
@@ -1160,11 +1171,11 @@ abstract mixin class _$VpnPropsCopyWith<$Res> implements $VpnPropsCopyWith<$Res>
   factory _$VpnPropsCopyWith(_VpnProps value, $Res Function(_VpnProps) _then) = __$VpnPropsCopyWithImpl;
 @override @useResult
 $Res call({
- bool enable, bool systemProxy, bool ipv6, bool allowBypass, bool dnsHijacking, AccessControlProps accessControlProps
+ bool enable, bool systemProxy, bool ipv6, bool allowBypass, bool dnsHijacking, AccessControlProps accessControlProps, TorProps torProps
 });
 
 
-@override $AccessControlPropsCopyWith<$Res> get accessControlProps;
+@override $AccessControlPropsCopyWith<$Res> get accessControlProps;@override $TorPropsCopyWith<$Res> get torProps;
 
 }
 /// @nodoc
@@ -1177,7 +1188,7 @@ class __$VpnPropsCopyWithImpl<$Res>
 
 /// Create a copy of VpnProps
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? enable = null,Object? systemProxy = null,Object? ipv6 = null,Object? allowBypass = null,Object? dnsHijacking = null,Object? accessControlProps = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? enable = null,Object? systemProxy = null,Object? ipv6 = null,Object? allowBypass = null,Object? dnsHijacking = null,Object? accessControlProps = null,Object? torProps = null,}) {
   return _then(_VpnProps(
 enable: null == enable ? _self.enable : enable // ignore: cast_nullable_to_non_nullable
 as bool,systemProxy: null == systemProxy ? _self.systemProxy : systemProxy // ignore: cast_nullable_to_non_nullable
@@ -1185,7 +1196,8 @@ as bool,ipv6: null == ipv6 ? _self.ipv6 : ipv6 // ignore: cast_nullable_to_non_n
 as bool,allowBypass: null == allowBypass ? _self.allowBypass : allowBypass // ignore: cast_nullable_to_non_nullable
 as bool,dnsHijacking: null == dnsHijacking ? _self.dnsHijacking : dnsHijacking // ignore: cast_nullable_to_non_nullable
 as bool,accessControlProps: null == accessControlProps ? _self.accessControlProps : accessControlProps // ignore: cast_nullable_to_non_nullable
-as AccessControlProps,
+as AccessControlProps,torProps: null == torProps ? _self.torProps : torProps // ignore: cast_nullable_to_non_nullable
+as TorProps,
   ));
 }
 
@@ -1198,7 +1210,288 @@ $AccessControlPropsCopyWith<$Res> get accessControlProps {
   return $AccessControlPropsCopyWith<$Res>(_self.accessControlProps, (value) {
     return _then(_self.copyWith(accessControlProps: value));
   });
+}/// Create a copy of VpnProps
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TorPropsCopyWith<$Res> get torProps {
+  
+  return $TorPropsCopyWith<$Res>(_self.torProps, (value) {
+    return _then(_self.copyWith(torProps: value));
+  });
 }
+}
+
+
+/// @nodoc
+mixin _$TorProps {
+
+ bool get enable; TorBridgeMode get bridgeMode; bool get customBridgesEnabled; String get customBridges;
+/// Create a copy of TorProps
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TorPropsCopyWith<TorProps> get copyWith => _$TorPropsCopyWithImpl<TorProps>(this as TorProps, _$identity);
+
+  /// Serializes this TorProps to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TorProps&&(identical(other.enable, enable) || other.enable == enable)&&(identical(other.bridgeMode, bridgeMode) || other.bridgeMode == bridgeMode)&&(identical(other.customBridgesEnabled, customBridgesEnabled) || other.customBridgesEnabled == customBridgesEnabled)&&(identical(other.customBridges, customBridges) || other.customBridges == customBridges));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enable,bridgeMode,customBridgesEnabled,customBridges);
+
+@override
+String toString() {
+  return 'TorProps(enable: $enable, bridgeMode: $bridgeMode, customBridgesEnabled: $customBridgesEnabled, customBridges: $customBridges)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TorPropsCopyWith<$Res>  {
+  factory $TorPropsCopyWith(TorProps value, $Res Function(TorProps) _then) = _$TorPropsCopyWithImpl;
+@useResult
+$Res call({
+ bool enable, TorBridgeMode bridgeMode, bool customBridgesEnabled, String customBridges
+});
+
+
+
+
+}
+/// @nodoc
+class _$TorPropsCopyWithImpl<$Res>
+    implements $TorPropsCopyWith<$Res> {
+  _$TorPropsCopyWithImpl(this._self, this._then);
+
+  final TorProps _self;
+  final $Res Function(TorProps) _then;
+
+/// Create a copy of TorProps
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? enable = null,Object? bridgeMode = null,Object? customBridgesEnabled = null,Object? customBridges = null,}) {
+  return _then(_self.copyWith(
+enable: null == enable ? _self.enable : enable // ignore: cast_nullable_to_non_nullable
+as bool,bridgeMode: null == bridgeMode ? _self.bridgeMode : bridgeMode // ignore: cast_nullable_to_non_nullable
+as TorBridgeMode,customBridgesEnabled: null == customBridgesEnabled ? _self.customBridgesEnabled : customBridgesEnabled // ignore: cast_nullable_to_non_nullable
+as bool,customBridges: null == customBridges ? _self.customBridges : customBridges // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [TorProps].
+extension TorPropsPatterns on TorProps {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TorProps value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _TorProps() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TorProps value)  $default,){
+final _that = this;
+switch (_that) {
+case _TorProps():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TorProps value)?  $default,){
+final _that = this;
+switch (_that) {
+case _TorProps() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool enable,  TorBridgeMode bridgeMode,  bool customBridgesEnabled,  String customBridges)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _TorProps() when $default != null:
+return $default(_that.enable,_that.bridgeMode,_that.customBridgesEnabled,_that.customBridges);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool enable,  TorBridgeMode bridgeMode,  bool customBridgesEnabled,  String customBridges)  $default,) {final _that = this;
+switch (_that) {
+case _TorProps():
+return $default(_that.enable,_that.bridgeMode,_that.customBridgesEnabled,_that.customBridges);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool enable,  TorBridgeMode bridgeMode,  bool customBridgesEnabled,  String customBridges)?  $default,) {final _that = this;
+switch (_that) {
+case _TorProps() when $default != null:
+return $default(_that.enable,_that.bridgeMode,_that.customBridgesEnabled,_that.customBridges);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _TorProps extends TorProps {
+  const _TorProps({this.enable = false, this.bridgeMode = TorBridgeMode.obfs4, this.customBridgesEnabled = false, this.customBridges = ''}): super._();
+  factory _TorProps.fromJson(Map<String, dynamic> json) => _$TorPropsFromJson(json);
+
+@override@JsonKey() final  bool enable;
+@override@JsonKey() final  TorBridgeMode bridgeMode;
+@override@JsonKey() final  bool customBridgesEnabled;
+@override@JsonKey() final  String customBridges;
+
+/// Create a copy of TorProps
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TorPropsCopyWith<_TorProps> get copyWith => __$TorPropsCopyWithImpl<_TorProps>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$TorPropsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TorProps&&(identical(other.enable, enable) || other.enable == enable)&&(identical(other.bridgeMode, bridgeMode) || other.bridgeMode == bridgeMode)&&(identical(other.customBridgesEnabled, customBridgesEnabled) || other.customBridgesEnabled == customBridgesEnabled)&&(identical(other.customBridges, customBridges) || other.customBridges == customBridges));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,enable,bridgeMode,customBridgesEnabled,customBridges);
+
+@override
+String toString() {
+  return 'TorProps(enable: $enable, bridgeMode: $bridgeMode, customBridgesEnabled: $customBridgesEnabled, customBridges: $customBridges)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TorPropsCopyWith<$Res> implements $TorPropsCopyWith<$Res> {
+  factory _$TorPropsCopyWith(_TorProps value, $Res Function(_TorProps) _then) = __$TorPropsCopyWithImpl;
+@override @useResult
+$Res call({
+ bool enable, TorBridgeMode bridgeMode, bool customBridgesEnabled, String customBridges
+});
+
+
+
+
+}
+/// @nodoc
+class __$TorPropsCopyWithImpl<$Res>
+    implements _$TorPropsCopyWith<$Res> {
+  __$TorPropsCopyWithImpl(this._self, this._then);
+
+  final _TorProps _self;
+  final $Res Function(_TorProps) _then;
+
+/// Create a copy of TorProps
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? enable = null,Object? bridgeMode = null,Object? customBridgesEnabled = null,Object? customBridges = null,}) {
+  return _then(_TorProps(
+enable: null == enable ? _self.enable : enable // ignore: cast_nullable_to_non_nullable
+as bool,bridgeMode: null == bridgeMode ? _self.bridgeMode : bridgeMode // ignore: cast_nullable_to_non_nullable
+as TorBridgeMode,customBridgesEnabled: null == customBridgesEnabled ? _self.customBridgesEnabled : customBridgesEnabled // ignore: cast_nullable_to_non_nullable
+as bool,customBridges: null == customBridges ? _self.customBridges : customBridges // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
 }
 
 

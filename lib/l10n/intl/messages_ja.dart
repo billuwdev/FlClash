@@ -69,9 +69,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m23(count) => "${count} 項目が選択されています";
 
-  static String m24(label) => "${label}はURLである必要があります";
+  static String m24(count) => "${count} 件のブリッジ行";
 
-  static String m25(count) => "${count}年前";
+  static String m25(label) => "${label}はURLである必要があります";
+
+  static String m26(count) => "${count}年前";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -824,6 +826,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "toggle": MessageLookupByLibrary.simpleMessage("トグル"),
     "tonalSpotScheme": MessageLookupByLibrary.simpleMessage("トーンスポット"),
     "tools": MessageLookupByLibrary.simpleMessage("ツール"),
+    "torBridgeDirect": MessageLookupByLibrary.simpleMessage("直接接続"),
+    "torBridgeLines": MessageLookupByLibrary.simpleMessage("Tor ブリッジ行"),
+    "torBridgeLinesCount": m24,
+    "torBridgeMode": MessageLookupByLibrary.simpleMessage("Tor ブリッジモード"),
+    "torBridgeObfs4": MessageLookupByLibrary.simpleMessage("obfs4 ブリッジ"),
+    "torCheckingExit": MessageLookupByLibrary.simpleMessage("Tor 出口を確認中…"),
+    "torCustomBridges": MessageLookupByLibrary.simpleMessage("カスタム Tor ブリッジ"),
+    "torCustomBridgesDesc": MessageLookupByLibrary.simpleMessage(
+      "内蔵ブリッジの代わりに独自のブリッジ行を使用します",
+    ),
+    "torEnabled": MessageLookupByLibrary.simpleMessage("Tor"),
+    "torEnabledDesc": MessageLookupByLibrary.simpleMessage(
+      "内蔵 Tor ネットワーク経由で TCP 通信を転送します",
+    ),
+    "torStatus": MessageLookupByLibrary.simpleMessage("Tor ネットワーク確認"),
+    "torTrafficUsage": MessageLookupByLibrary.simpleMessage("Tor トラフィック"),
     "tproxyPort": MessageLookupByLibrary.simpleMessage("Tproxyポート"),
     "trafficUsage": MessageLookupByLibrary.simpleMessage("トラフィック使用量"),
     "tun": MessageLookupByLibrary.simpleMessage("TUN"),
@@ -842,7 +860,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "upload": MessageLookupByLibrary.simpleMessage("アップロード"),
     "url": MessageLookupByLibrary.simpleMessage("URL"),
     "urlDesc": MessageLookupByLibrary.simpleMessage("URL経由でプロファイルを取得"),
-    "urlTip": m24,
+    "urlTip": m25,
     "useHosts": MessageLookupByLibrary.simpleMessage("ホストを使用"),
     "useSystemHosts": MessageLookupByLibrary.simpleMessage("システムホストを使用"),
     "userAgent": MessageLookupByLibrary.simpleMessage("ユーザーエージェント"),
@@ -858,7 +876,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "vpnTip": MessageLookupByLibrary.simpleMessage("変更はVPN再起動後に有効"),
     "webDAVConfiguration": MessageLookupByLibrary.simpleMessage("WebDAV設定"),
     "whitelistMode": MessageLookupByLibrary.simpleMessage("ホワイトリストモード"),
-    "yearsAgo": m25,
+    "yearsAgo": m26,
     "zh_CN": MessageLookupByLibrary.simpleMessage("簡体字中国語"),
   };
 }

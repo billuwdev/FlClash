@@ -69,9 +69,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m23(count) => "已选择 ${count} 项";
 
-  static String m24(label) => "${label}必须为URL";
+  static String m24(count) => "${count} 条网桥线路";
 
-  static String m25(count) => "${count} 年前";
+  static String m25(label) => "${label}必须为URL";
+
+  static String m26(count) => "${count} 年前";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -714,6 +716,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "toggle": MessageLookupByLibrary.simpleMessage("切换"),
     "tonalSpotScheme": MessageLookupByLibrary.simpleMessage("调性点缀"),
     "tools": MessageLookupByLibrary.simpleMessage("工具"),
+    "torBridgeDirect": MessageLookupByLibrary.simpleMessage("直连"),
+    "torBridgeLines": MessageLookupByLibrary.simpleMessage("Tor 网桥线路"),
+    "torBridgeLinesCount": m24,
+    "torBridgeMode": MessageLookupByLibrary.simpleMessage("Tor 网桥模式"),
+    "torBridgeObfs4": MessageLookupByLibrary.simpleMessage("obfs4 网桥"),
+    "torCheckingExit": MessageLookupByLibrary.simpleMessage("正在检测 Tor 出口…"),
+    "torCustomBridges": MessageLookupByLibrary.simpleMessage("自定义 Tor 网桥"),
+    "torCustomBridgesDesc": MessageLookupByLibrary.simpleMessage(
+      "使用自己的网桥线路替代内置网桥",
+    ),
+    "torEnabled": MessageLookupByLibrary.simpleMessage("Tor"),
+    "torEnabledDesc": MessageLookupByLibrary.simpleMessage(
+      "通过内置 Tor 网络转发 TCP 流量",
+    ),
+    "torStatus": MessageLookupByLibrary.simpleMessage("Tor 网络检测"),
+    "torTrafficUsage": MessageLookupByLibrary.simpleMessage("Tor 流量"),
     "tproxyPort": MessageLookupByLibrary.simpleMessage("Tproxy端口"),
     "trafficUsage": MessageLookupByLibrary.simpleMessage("流量统计"),
     "tun": MessageLookupByLibrary.simpleMessage("虚拟网卡"),
@@ -730,7 +748,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "upload": MessageLookupByLibrary.simpleMessage("上传"),
     "url": MessageLookupByLibrary.simpleMessage("URL"),
     "urlDesc": MessageLookupByLibrary.simpleMessage("通过URL获取配置文件"),
-    "urlTip": m24,
+    "urlTip": m25,
     "useHosts": MessageLookupByLibrary.simpleMessage("使用Hosts"),
     "useSystemHosts": MessageLookupByLibrary.simpleMessage("使用系统Hosts"),
     "userAgent": MessageLookupByLibrary.simpleMessage("用户代理"),
@@ -746,7 +764,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "vpnTip": MessageLookupByLibrary.simpleMessage("重启VPN后改变生效"),
     "webDAVConfiguration": MessageLookupByLibrary.simpleMessage("WebDAV配置"),
     "whitelistMode": MessageLookupByLibrary.simpleMessage("白名单模式"),
-    "yearsAgo": m25,
+    "yearsAgo": m26,
     "zh_CN": MessageLookupByLibrary.simpleMessage("中文简体"),
   };
 }

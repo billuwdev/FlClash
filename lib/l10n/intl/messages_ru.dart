@@ -75,9 +75,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m23(count) => "Выбрано ${count} элементов";
 
-  static String m24(label) => "${label} должен быть URL";
+  static String m24(count) => "Строк мостов: ${count}";
 
-  static String m25(count) =>
+  static String m25(label) => "${label} должен быть URL";
+
+  static String m26(count) =>
       "${Intl.plural(count, one: '${count} год назад', few: '${count} года назад', many: '${count} лет назад', other: '${count} года назад')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -1071,6 +1073,28 @@ class MessageLookup extends MessageLookupByLibrary {
     "toggle": MessageLookupByLibrary.simpleMessage("Переключить"),
     "tonalSpotScheme": MessageLookupByLibrary.simpleMessage("Тональный акцент"),
     "tools": MessageLookupByLibrary.simpleMessage("Инструменты"),
+    "torBridgeDirect": MessageLookupByLibrary.simpleMessage(
+      "Прямое подключение",
+    ),
+    "torBridgeLines": MessageLookupByLibrary.simpleMessage("Строки мостов Tor"),
+    "torBridgeLinesCount": m24,
+    "torBridgeMode": MessageLookupByLibrary.simpleMessage("Режим моста Tor"),
+    "torBridgeObfs4": MessageLookupByLibrary.simpleMessage("Мост obfs4"),
+    "torCheckingExit": MessageLookupByLibrary.simpleMessage(
+      "Проверка выхода Tor…",
+    ),
+    "torCustomBridges": MessageLookupByLibrary.simpleMessage(
+      "Пользовательские мосты Tor",
+    ),
+    "torCustomBridgesDesc": MessageLookupByLibrary.simpleMessage(
+      "Использовать собственные строки мостов вместо встроенных",
+    ),
+    "torEnabled": MessageLookupByLibrary.simpleMessage("Tor"),
+    "torEnabledDesc": MessageLookupByLibrary.simpleMessage(
+      "Направлять TCP-трафик через встроенную сеть Tor",
+    ),
+    "torStatus": MessageLookupByLibrary.simpleMessage("Проверка сети Tor"),
+    "torTrafficUsage": MessageLookupByLibrary.simpleMessage("Трафик Tor"),
     "tproxyPort": MessageLookupByLibrary.simpleMessage("Tproxy-порт"),
     "trafficUsage": MessageLookupByLibrary.simpleMessage(
       "Использование трафика",
@@ -1099,7 +1123,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "urlDesc": MessageLookupByLibrary.simpleMessage(
       "Получить профиль через URL",
     ),
-    "urlTip": m24,
+    "urlTip": m25,
     "useHosts": MessageLookupByLibrary.simpleMessage("Использовать hosts"),
     "useSystemHosts": MessageLookupByLibrary.simpleMessage(
       "Использовать системные hosts",
@@ -1123,7 +1147,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "whitelistMode": MessageLookupByLibrary.simpleMessage(
       "Режим белого списка",
     ),
-    "yearsAgo": m25,
+    "yearsAgo": m26,
     "zh_CN": MessageLookupByLibrary.simpleMessage("Упрощенный китайский"),
   };
 }

@@ -200,7 +200,30 @@ DashboardState dashboardState(Ref ref) {
   final dashboardWidgets = ref.watch(
     appSettingProvider.select((state) => state.dashboardWidgets),
   );
-  return DashboardState(dashboardWidgets: dashboardWidgets);
+  final torEnabled = ref.watch(
+    vpnSettingProvider.select((state) => state.torProps.enable),
+  );
+  var widgets = dashboardWidgets;
+  if (system.isAndroid && torEnabled) {
+    widgets = [
+      ...dashboardWidgets.where(
+        (widget) =>
+            widget != DashboardWidget.torStatus &&
+            widget != DashboardWidget.torTrafficUsage,
+      ),
+      DashboardWidget.torStatus,
+      DashboardWidget.torTrafficUsage,
+    ];
+  } else {
+    widgets = dashboardWidgets
+        .where(
+          (widget) =>
+              widget != DashboardWidget.torStatus &&
+              widget != DashboardWidget.torTrafficUsage,
+        )
+        .toList();
+  }
+  return DashboardState(dashboardWidgets: widgets);
 }
 
 @riverpod

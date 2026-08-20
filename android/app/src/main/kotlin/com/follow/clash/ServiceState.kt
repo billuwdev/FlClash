@@ -5,6 +5,7 @@ import com.follow.clash.common.GlobalState
 import com.follow.clash.models.SharedState
 import com.follow.clash.plugins.AppPlugin
 import com.follow.clash.plugins.TilePlugin
+import com.follow.clash.plugins.TorPlugin
 import com.follow.clash.service.ServiceConfig
 import com.follow.clash.service.models.NotificationParams
 import com.follow.clash.service.models.VpnOptions
@@ -281,6 +282,7 @@ object ServiceState {
         if (!isCurrent(request)) {
             return@withLock false
         }
+        TorPlugin.stopActive()
         if (runState.value == RunState.STOPPED && runTimeMillis == 0L) {
             return@withLock true
         }

@@ -124,6 +124,8 @@ enum TunStack { gvisor, system, mixed }
 
 enum AccessControlMode { acceptSelected, rejectSelected }
 
+enum TorBridgeMode { direct, obfs4 }
+
 enum AccessSortType { none, name, time }
 
 enum ProfileType { file, url }
@@ -251,6 +253,14 @@ enum DashboardWidget {
   outboundMode(GridItem(crossAxisCellCount: 4, child: OutboundMode())),
   trafficUsage(GridItem(crossAxisCellCount: 4, child: TrafficUsage())),
   networkDetection(GridItem(crossAxisCellCount: 4, child: NetworkDetection())),
+  torStatus(
+    GridItem(crossAxisCellCount: 4, child: TorStatus()),
+    platforms: [SupportPlatform.Android],
+  ),
+  torTrafficUsage(
+    GridItem(crossAxisCellCount: 4, child: TorTrafficUsage()),
+    platforms: [SupportPlatform.Android],
+  ),
   tunButton(
     GridItem(crossAxisCellCount: 4, child: TUNButton()),
     platforms: desktopPlatforms,

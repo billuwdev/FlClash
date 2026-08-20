@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/providers/config.dart';
+import 'package:fl_clash/enum/enum.dart';
+import 'package:fl_clash/providers/providers.dart';
 import 'package:fl_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -246,11 +249,124 @@ class AutoCheckUpdateItem extends ConsumerWidget {
   }
 }
 
-class ApplicationSettingView extends StatelessWidget {
+class TorEnabledItem extends ConsumerWidget {
+  const TorEnabledItem({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final enabled = ref.watch(
+      vpnSettingProvider.select((state) => state.torProps.enable),
+    );
+    return ListItem.toggle(
+      title: Text(context.appLocalizations.torEnabled),
+      subtitle: Text(context.appLocalizations.torEnabledDesc),
+      value: enabled,
+      onChanged: (value) {
+        ref
+            .read(vpnSettingProvider.notifier)
+            .update((state) => state.copyWith.torProps(enable: value));
+        unawaited(
+          ref.read(setupActionProvider.notifier).applyProfile(force: true),
+        );
+      },
+    );
+  }
+}
+
+class TorBridgeModeItem extends ConsumerWidget {
+  const TorBridgeModeItem({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mode = ref.watch(
+      vpnSettingProvider.select((state) => state.torProps.bridgeMode),
+    );
+    return ListItem<TorBridgeMode>.options(
+      title: Text(context.appLocalizations.torBridgeMode),
+      dialogTitle: context.appLocalizations.torBridgeMode,
+      options: TorBridgeMode.values,
+      value: mode,
+      textBuilder: (value) => switch (value) {
+        TorBridgeMode.direct => context.appLocalizations.torBridgeDirect,
+        TorBridgeMode.obfs4 => context.appLocalizations.torBridgeObfs4,
+      },
+      onChanged: (value) {
+        if (value == null) return;
+        ref
+            .read(vpnSettingProvider.notifier)
+            .update((state) => state.copyWith.torProps(bridgeMode: value));
+        unawaited(
+          ref.read(setupActionProvider.notifier).applyProfile(force: true),
+        );
+      },
+    );
+  }
+}
+
+class TorCustomBridgesEnabledItem extends ConsumerWidget {
+  const TorCustomBridgesEnabledItem({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final enabled = ref.watch(
+      vpnSettingProvider.select((state) => state.torProps.customBridgesEnabled),
+    );
+    return ListItem.toggle(
+      title: Text(context.appLocalizations.torCustomBridges),
+      subtitle: Text(context.appLocalizations.torCustomBridgesDesc),
+      value: enabled,
+      onChanged: (value) {
+        ref
+            .read(vpnSettingProvider.notifier)
+            .update(
+              (state) => state.copyWith.torProps(customBridgesEnabled: value),
+            );
+        unawaited(
+          ref.read(setupActionProvider.notifier).applyProfile(force: true),
+        );
+      },
+    );
+  }
+}
+
+class TorCustomBridgesItem extends ConsumerWidget {
+  const TorCustomBridgesItem({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bridges = ref.watch(
+      vpnSettingProvider.select((state) => state.torProps.customBridges),
+    );
+    final lineCount = bridges
+        .split(RegExp(r'\r\n|\n|\r'))
+        .where((line) => line.trim().isNotEmpty)
+        .length;
+    return ListItem.input(
+      title: Text(context.appLocalizations.torBridgeLines),
+      subtitle: Text(context.appLocalizations.torBridgeLinesCount(lineCount)),
+      dialogTitle: context.appLocalizations.torBridgeLines,
+      value: bridges,
+      onChanged: (value) {
+        if (value == null) return;
+        ref
+            .read(vpnSettingProvider.notifier)
+            .update((state) => state.copyWith.torProps(customBridges: value));
+        unawaited(
+          ref.read(setupActionProvider.notifier).applyProfile(force: true),
+        );
+      },
+    );
+  }
+}
+
+class ApplicationSettingView extends ConsumerWidget {
   const ApplicationSettingView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final torProps = ref.watch(
+      vpnSettingProvider.select((state) => state.torProps),
+    );
     final List<Widget> items = [
       const MinimizeItem(),
       if (system.isDesktop) ...[
@@ -259,6 +375,16 @@ class ApplicationSettingView extends StatelessWidget {
       ],
       const AutoRunItem(),
       if (system.isAndroid) ...[const HiddenItem()],
+      if (system.isAndroid) ...[
+        const TorEnabledItem(),
+        if (torProps.enable) const TorBridgeModeItem(),
+        if (torProps.enable && torProps.bridgeMode == TorBridgeMode.obfs4)
+          const TorCustomBridgesEnabledItem(),
+        if (torProps.enable &&
+            torProps.bridgeMode == TorBridgeMode.obfs4 &&
+            torProps.customBridgesEnabled)
+          const TorCustomBridgesItem(),
+      ],
       const AnimateTabItem(),
       const OpenLogsItem(),
       const CloseConnectionsItem(),
